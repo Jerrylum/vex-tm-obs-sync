@@ -25,5 +25,6 @@ vex-tm-bridge = { git = "https://github.com/Jerrylum/vex-tm-bridge.git" }
 
 [dependency-groups]
 dev = [
+    "black>=25.1.0",
     "pyinstaller>=6.14.1",
 ]
