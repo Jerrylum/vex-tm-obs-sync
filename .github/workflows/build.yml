@@ -1,0 +1,80 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Install uv
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+    
+    - name: Set up Python
+      run: uv python install 3.11
+    
+    - name: Install dependencies
+      run: |
+        uv sync --dev
+    
+    - name: Build executable
+      run: |
+        uv run pyinstaller vex-tm-obs-sync.spec
+    
+    - name: Test executable exists
+      run: |
+        if (Test-Path "dist/vex-tm-obs-sync.exe") {
+          Write-Host "Executable built successfully"
+          Get-ChildItem dist/
+        } else {
+          Write-Error "Executable not found"
+          exit 1
+        }
+    
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: vex-tm-obs-sync-windows
+        path: |
+          dist/vex-tm-obs-sync.exe
+          settings.yml
+        retention-days: 7
+    
+    - name: Create Release
+      if: startsWith(github.ref, 'refs/tags/v')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          dist/vex-tm-obs-sync.exe
+          settings.yml
+        body: |
+          ## Installation
+          
+          1. Download `vex-tm-obs-sync.exe` and `settings.yml`
+          2. Place both files in the same directory
+          3. Edit `settings.yml` to match your setup
+          4. Double-click `vex-tm-obs-sync.exe` to run
+          
+          ## What's Changed
+          
+          See the commit history for detailed changes.
+          
+          ## Requirements
+          
+          - Windows 10/11
+          - OBS Studio with WebSocket server enabled
+          - VEX Tournament Manager running and accessible
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

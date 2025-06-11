@@ -1,0 +1,29 @@
+[project]
+name = "vex-tm-obs-sync"
+version = "0.1.0"
+description = "Synchronize OBS scenes with VEX Tournament Manager audience display modes"
+readme = "README.md"
+authors = [
+    { name = "Jerry Lum", email = "me@jerryio.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "obsws-python>=1.7.2",
+    "pyyaml>=6.0.2",
+    "vex-tm-bridge",
+]
+
+[project.scripts]
+vex-tm-obs-sync = "vex_tm_obs_sync:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.sources]
+vex-tm-bridge = { git = "https://github.com/Jerrylum/vex-tm-bridge.git" }
+
+[dependency-groups]
+dev = [
+    "pyinstaller>=6.14.1",
+]

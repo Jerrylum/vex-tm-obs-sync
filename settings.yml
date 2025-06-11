@@ -1,0 +1,61 @@
+# VEX Tournament Manager OBS Sync Configuration
+# This file configures the synchronization between OBS scenes and VEX TM audience display
+
+# OBS WebSocket connection settings
+obs:
+  host: "localhost"       # OBS WebSocket host (default: localhost)
+  port: 4455             # OBS WebSocket port (default: 4455)
+  password: null         # OBS WebSocket password (null if no password)
+
+# VEX Tournament Manager settings
+vex_tm:
+  host: "localhost"                    # VEX TM host IP address
+  competition: "V5RC"                  # Competition type: V5RC or VIQRC
+  fieldset_title: "Match Field Set #1" # Name of the fieldset to control
+
+# Field scene mappings for field-specific camera views
+# These scenes correspond to specific fields and will automatically switch
+# between "Intro" and "In-Match" displays based on match state
+field_scene_mappings:
+  - obs_scene: "Field 0"
+  - obs_scene: "Field 1"
+  - obs_scene: "Field 2"
+
+# Other scene mappings between OBS and VEX TM audience display
+# Direct one-to-one mappings for non-field scenes
+other_scene_mappings:
+  - obs_scene: "Camera Routing"
+    tm_display: "BLANK"
+  - obs_scene: "Logo"
+    tm_display: "LOGO"
+  - obs_scene: "Overview & Match Result"
+    tm_display: "RESULTS"
+  - obs_scene: "Schedule"
+    tm_display: "SCHEDULE"
+  - obs_scene: "Rankings"
+    tm_display: "RANKINGS"
+  - obs_scene: "Skills Rankings"
+    tm_display: "SC_RANKINGS"
+  - obs_scene: "Alliance Selection"
+    tm_display: "ALLIANCE_SELECTION"
+  - obs_scene: "Elim Bracket"
+    tm_display: "BRACKET"
+  - obs_scene: "Award Scene"
+    tm_display: "AWARD"
+  - obs_scene: "Inspection"
+    tm_display: "INSPECTION"
+
+# Sync direction settings
+sync_tm_to_obs: true    # Sync VEX TM audience display changes to OBS scenes
+sync_obs_to_tm: true    # Sync OBS scene changes to VEX TM audience display
+
+# Notes:
+# - The "Match Field Set #1" dialog must be opened in VEX TM at least once
+# - OBS WebSocket server must be enabled in OBS (Tools > WebSocket Server Settings)
+# - Field scenes automatically switch between "INTRO" and "IN_MATCH" based on match state
+# - Other scenes use direct one-to-one mappings with TM display modes
+# - Valid TM display modes: BLANK, LOGO, INTRO, IN_MATCH, RESULTS, SCHEDULE, RANKINGS, 
+#   SC_RANKINGS, ALLIANCE_SELECTION, BRACKET, AWARD, INSPECTION
+# - OBS scene names must match exactly (case-sensitive)
+# - Field scenes are indexed starting from 0 (Field 0 = TM Field ID 0)
+# - Both sync directions can be enabled simultaneously 
