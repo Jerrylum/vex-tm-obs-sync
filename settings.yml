@@ -58,4 +58,4 @@ sync_obs_to_tm: true    # Sync OBS scene changes to VEX TM audience display
 #   SC_RANKINGS, ALLIANCE_SELECTION, BRACKET, AWARD, INSPECTION
 # - OBS scene names must match exactly (case-sensitive)
 # - Field scenes are indexed starting from 0 (Field 0 = TM Field ID 0)
-# - Both sync directions can be enabled simultaneously 
+# - Both sync directions can be enabled simultaneously
