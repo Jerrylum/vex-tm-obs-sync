@@ -188,37 +188,6 @@ The project includes GitHub Actions workflows for automated building:
 - **Development builds** on every push to main
 - **Release builds** when creating a new tag
 
-## Development
-
-### Project Structure
-
-```
-vex-tm-obs-sync/
-├── src/vex_tm_obs_sync/
-│   ├── __init__.py          # Package initialization
-│   ├── main.py              # Main application entry point
-│   ├── config.py            # Configuration management
-│   └── sync.py              # Core synchronization logic
-├── settings.yml             # Sample configuration
-├── pyproject.toml           # Project configuration
-└── README.md                # This file
-```
-
-### Running Tests
-
-```bash
-# Run the application in debug mode
-uv run vex-tm-obs-sync --debug
-```
-
-### Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
 ## Troubleshooting
 
 ### Common Issues
@@ -240,27 +209,3 @@ uv run vex-tm-obs-sync --debug
 4. **"No mapping found for scene/display"**
    - Check scene names match exactly (case-sensitive)
    - Verify mappings in `settings.yml`
-
-### Debug Mode
-
-Run with `--debug` flag for detailed logging:
-
-```bash
-vex-tm-obs-sync --debug
-```
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Disclaimer
-
-This software uses the VEX Tournament Manager Bridge package to interact with VEX Tournament Manager. Please review the [TM Public API guidelines](https://kb.roboticseducation.org/hc/en-us/articles/19238156122135) and [Commitment to Event Excellence](https://kb.roboticseducation.org/hc/en-us/articles/12094736701975-Commitment-to-Event-Excellence) before using this software in official events.
-
-## Support
-
-For issues and questions:
-
-1. Check the troubleshooting section above
-2. Review the configuration examples
-3. Open an issue on GitHub with debug logs
