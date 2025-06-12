@@ -1,43 +1,25 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-block_cipher = None
 
 a = Analysis(
     ['src/vex_tm_obs_sync/main.py'],
     pathex=[],
     binaries=[],
     datas=[],
-    hiddenimports=[
-        'vex_tm_bridge',
-        'vex_tm_bridge.base',
-        'vex_tm_bridge.v5rc',
-        'vex_tm_bridge.viqrc',
-        'obsws_python',
-        'obsws_python.events',
-        'yaml',
-        'pywinauto',
-        'comtypes',
-        'win32gui',
-        'win32api',
-        'win32con',
-    ],
+    hiddenimports=[],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[],
-    win_no_prefer_redirects=False,
-    win_private_assemblies=False,
-    cipher=block_cipher,
     noarchive=False,
+    optimize=0,
 )
-
-pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+pyz = PYZ(a.pure)
 
 exe = EXE(
     pyz,
     a.scripts,
     a.binaries,
-    a.zipfiles,
     a.datas,
     [],
     name='vex-tm-obs-sync',
@@ -49,8 +31,8 @@ exe = EXE(
     runtime_tmpdir=None,
     console=True,
     disable_windowed_traceback=False,
+    argv_emulation=False,
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=None,
-) 
+)
