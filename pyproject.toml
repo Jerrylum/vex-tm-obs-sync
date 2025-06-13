@@ -1,6 +1,6 @@
 [project]
 name = "vex-tm-obs-sync"
-version = "0.1.0"
+version = "0.1.1"
 description = "Synchronize OBS scenes with VEX Tournament Manager audience display modes"
 readme = "README.md"
 authors = [
