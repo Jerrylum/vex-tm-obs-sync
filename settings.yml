@@ -3,7 +3,7 @@
 
 # OBS WebSocket connection settings
 obs:
-  host: "localhost"       # OBS WebSocket host (default: localhost)
+  host: "localhost"      # OBS WebSocket host (default: localhost)
   port: 4455             # OBS WebSocket port (default: 4455)
   password: null         # OBS WebSocket password (null if no password)
 
