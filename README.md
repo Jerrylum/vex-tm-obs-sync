@@ -2,6 +2,11 @@
 
 A Python application that synchronizes OBS scenes with VEX Tournament Manager audience display modes. This tool enables seamless integration between your streaming setup and tournament management, automatically switching between displays as scenes change.
 
+> [!CAUTION]
+> **This software is very likely to be considered as unauthorized software.** This software accesses Tournament Manager through UI automation instead of the official TM Public API (Local TM API). While this software respect the spirit of the TM Public API guidelines, as an Event Partner, please be aware that using this software might be considered as a violation of the Commitment to Event Excellence.
+>
+> **Read the official [TM Public API guidelines](https://kb.roboticseducation.org/hc/en-us/articles/19238156122135) and [Commitment to Event Excellence](https://kb.roboticseducation.org/hc/en-us/articles/12094736701975-Commitment-to-Event-Excellence) before using this software in any official event.**
+
 ## Features
 
 - **Bidirectional Sync**: Synchronize OBS scene changes to VEX TM audience display and vice versa
@@ -9,6 +14,9 @@ A Python application that synchronizes OBS scenes with VEX Tournament Manager au
 - **Multiple Usage Modes**: Run from source, as standalone executable, or via command line
 - **Real-time Updates**: Instant synchronization with minimal latency
 - **Robust Error Handling**: Graceful handling of connection issues and configuration errors
+- **Free Software**: This software is a free software, you have the freedom to build your own version without the need to ask for an API key or any other permission.
+
+![VEX Tournament Manager OBS Sync Terminal Screenshot](./docs/vex-tm-obs-sync-demo.png)
 
 ## Requirements
 
@@ -23,22 +31,26 @@ A Python application that synchronizes OBS scenes with VEX Tournament Manager au
 ### Method 1: Development (Recommended)
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/yourusername/vex-tm-obs-sync.git
    cd vex-tm-obs-sync
    ```
 
 2. **Install uv package manager:**
+
    ```powershell
    powershell -c "(irm https://astral.sh/uv/install.ps1) | iex"
    ```
 
 3. **Install dependencies:**
+
    ```bash
    uv sync
    ```
 
 4. **Configure the application:**
+
    - Copy and edit `settings.yml` to match your setup
    - Configure OBS WebSocket settings and VEX TM connection
 
@@ -72,14 +84,14 @@ Create a `settings.yml` file with the following structure:
 ```yaml
 # OBS WebSocket connection settings
 obs:
-  host: "localhost"       # OBS WebSocket host
-  port: 4455             # OBS WebSocket port
-  password: null         # OBS WebSocket password (if set)
+  host: "localhost" # OBS WebSocket host
+  port: 4455 # OBS WebSocket port
+  password: null # OBS WebSocket password (if set)
 
 # VEX Tournament Manager settings
 vex_tm:
-  host: "localhost"                    # VEX TM host IP address
-  competition: "V5RC"                  # Competition type: V5RC or VIQRC
+  host: "localhost" # VEX TM host IP address
+  competition: "V5RC" # Competition type: V5RC or VIQRC
   fieldset_title: "Match Field Set #1" # Name of the fieldset to control
 
 # Field scene mappings for field-specific camera views
@@ -103,8 +115,8 @@ other_scene_mappings:
     tm_display: "SC_RANKINGS"
 
 # Sync direction settings
-sync_tm_to_obs: true    # Sync TM changes to OBS
-sync_obs_to_tm: true    # Sync OBS changes to TM
+sync_tm_to_obs: true # Sync TM changes to OBS
+sync_obs_to_tm: true # Sync OBS changes to TM
 ```
 
 ### Field-Based Scene Management
@@ -112,11 +124,13 @@ sync_obs_to_tm: true    # Sync OBS changes to TM
 The application supports two types of scene mappings:
 
 **Field Scenes**: Automatically switch between displays based on match state and field
+
 - When switching to a field scene in OBS, TM display changes to "INTRO" (if no match) or "IN_MATCH" (if match running)
 - When TM switches to "INTRO" or "IN_MATCH", OBS switches to the current field's scene (based on TM's current field ID)
 - Field scenes are indexed starting from 0 (Field 0 = TM Field ID 0, Field 1 = TM Field ID 1, etc.)
 
 **Other Scenes**: Direct one-to-one mappings
+
 - Each scene maps directly to a specific TM audience display mode
 - Bidirectional sync: changing OBS scene updates TM display, and vice versa
 
@@ -140,6 +154,7 @@ The application supports two types of scene mappings:
 ### OBS Studio Setup
 
 1. **Enable WebSocket Server:**
+
    - Go to `Tools` → `WebSocket Server Settings`
    - Check "Enable WebSocket server"
    - Set port to `4455` (default)
@@ -193,15 +208,18 @@ The project includes GitHub Actions workflows for automated building:
 ### Common Issues
 
 1. **"Settings file not found"**
+
    - Ensure `settings.yml` exists in the same directory as the executable
    - Or specify a custom path with `--config`
 
 2. **"Failed to connect to OBS"**
+
    - Verify OBS WebSocket server is enabled
    - Check host/port/password settings
    - Ensure OBS is running
 
 3. **"Failed to connect to VEX TM"**
+
    - Verify VEX Tournament Manager is running
    - Check host IP address setting
    - Ensure Match Field Set dialog has been opened at least once
