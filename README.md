@@ -28,7 +28,13 @@ A Python application that synchronizes OBS scenes with VEX Tournament Manager au
 
 ## Installation & Usage
 
-### Method 1: Development (Recommended)
+### Method 1: Standalone Executable
+
+1. **Download the latest release** from the releases page
+2. **Edit `settings.yml` file** in the same directory as the executable
+3. **Double-click** `vex-tm-obs-sync.exe` to run
+
+### Method 2: Development
 
 1. **Clone the repository:**
 
@@ -51,7 +57,7 @@ A Python application that synchronizes OBS scenes with VEX Tournament Manager au
 
 4. **Configure the application:**
 
-   - Copy and edit `settings.yml` to match your setup
+   - Edit `settings.yml` to match your setup
    - Configure OBS WebSocket settings and VEX TM connection
 
 5. **Run the application:**
@@ -60,12 +66,6 @@ A Python application that synchronizes OBS scenes with VEX Tournament Manager au
    # or
    uv run python -m vex_tm_obs_sync
    ```
-
-### Method 2: Standalone Executable
-
-1. **Download the latest release** from the releases page
-2. **Create a `settings.yml` file** in the same directory as the executable
-3. **Double-click** `vex-tm-obs-sync.exe` to run
 
 ### Method 3: Command Line with Custom Config
 
@@ -79,7 +79,7 @@ vex-tm-obs-sync.exe --config /path/to/custom-settings.yml
 
 ## Configuration
 
-Create a `settings.yml` file with the following structure:
+Edit `settings.yml` file with the following structure:
 
 ```yaml
 # OBS WebSocket connection settings
