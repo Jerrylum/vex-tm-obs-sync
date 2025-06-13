@@ -80,8 +80,8 @@ def load_config(config_path: Path) -> Config:
     vex_tm_data = data.get("vex_tm", {})
     competition_str = vex_tm_data.get("competition", "V5RC")
     try:
-        competition = Competition[competition_str]
-    except KeyError:
+        competition = Competition.by_name(competition_str)
+    except ValueError:
         raise ValueError(
             f"Invalid competition type: {competition_str}. Must be one of: {list(Competition.__members__.keys())}"
         )
