@@ -45,6 +45,10 @@ jobs:
       run: |
         Move-Item -Path dist/vex-tm-obs-sync.exe -Destination vex-tm-obs-sync.exe
     
+    - name: Create zip file
+      run: |
+        Compress-Archive -Path vex-tm-obs-sync.exe, settings.yml -DestinationPath vex-tm-obs-sync-windows.zip -Force
+    
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:
@@ -59,8 +63,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          vex-tm-obs-sync.exe
-          settings.yml
+          vex-tm-obs-sync-windows.zip
         body: |
           ## Installation
           
