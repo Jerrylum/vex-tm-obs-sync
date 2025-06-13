@@ -596,8 +596,8 @@ wheels = [
 
 [[package]]
 name = "vex-tm-bridge"
-version = "0.1.1"
-source = { git = "https://github.com/Jerrylum/vex-tm-bridge.git#bab6f0e7b6e31d369cdcfc2883a6705cb330fe86" }
+version = "0.1.2"
+source = { git = "https://github.com/Jerrylum/vex-tm-bridge.git#7008c5ed65fec688b4312a417bf0c535943bc213" }
 dependencies = [
     { name = "beautifulsoup4" },
     { name = "click" },
