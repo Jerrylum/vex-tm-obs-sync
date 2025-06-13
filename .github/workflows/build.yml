@@ -40,13 +40,17 @@ jobs:
           Write-Error "Executable not found"
           exit 1
         }
+
+    - name: Move executable to root
+      run: |
+        Move-Item -Path dist/vex-tm-obs-sync.exe -Destination vex-tm-obs-sync.exe
     
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:
         name: vex-tm-obs-sync-windows
         path: |
-          dist/vex-tm-obs-sync.exe
+          vex-tm-obs-sync.exe
           settings.yml
         retention-days: 7
     
@@ -60,8 +64,8 @@ jobs:
         body: |
           ## Installation
           
-          1. Download `vex-tm-obs-sync.exe` and `settings.yml`
-          2. Place both files in the same directory
+          1. Download `vex-tm-obs-sync-windows.zip`
+          2. Extract the zip file
           3. Edit `settings.yml` to match your setup
           4. Double-click `vex-tm-obs-sync.exe` to run
           
