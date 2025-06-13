@@ -59,7 +59,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          dist/vex-tm-obs-sync.exe
+          vex-tm-obs-sync.exe
           settings.yml
         body: |
           ## Installation
